@@ -58,12 +58,15 @@ def waitlist(user_data: dict, sport:str):
         # c.execute(f"select * from waitlist where player_id = \'{user_data['from']['id']}\' and sport = \'{sport}\'")
         # if len(c.fetchall()) != 0:
         #     return False
+        # todo check this
         c.execute(
             f"INSERT INTO waitlist VALUES (\'{user_data['from']['id']}\', \'{sport}\' ,null, null)")
         conn.commit()
         conn.close()
         return False
     else:
+        c.execute(f"delete from waitlist where player_id = \'{player2[-1][0]}\'")
+        conn.commit()
         c.execute(f"select name, surname from player where id = \'{player2[-1][0]}\'")
         return ", ".join(c.fetchone())
 

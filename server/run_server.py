@@ -38,24 +38,25 @@ def coach():
     #     "text": "This is a reply!"
     # })
     content = request.get_json()
-    text = ''.join(x for x in content['text'].split(" ")[-1].lower() if x.isalpha())
-    sport = ''.join(x for x in content['text'].split(" ")[-2].lower() if x.isalpha())
-    if text != 'help' and sport.lower() not in db.config["T_SPORT"]:
-        return json.dumps({
-            "type": "message",
-            "text": f"Invalid sport name, sports: {db.config['T_SPORT']}"
-        })
+    text = ''.join(x for x in content['text'].split()[-1].lower() if x.isalpha())
     if text == 'help':
         return json.dumps({
             "type": "message",
             "text": """
-                    enroll - enroll tournament
-                    leave - leave tournament
-                    give - wait for a quick game
+                    <SPORT> enroll - enroll tournament
+                    <SPORT> leave - leave tournament
+                    <SPORT> give - wait for a quick game
                     help - print help
                     """
         })
-    elif text == 'enroll':
+    sport = ''.join(x for x in content['text'].split()[-2].lower() if x.isalpha())
+    if text != 'help' and sport.lower() not in db.config["T_SPORT"]:
+        return json.dumps({
+            "type": "message",
+            "text": f"Invalid sport name, sports: {db.config['T_SPORT']} not .{sport}."
+        })
+
+    if text == 'enroll':
         if not db.tournament(content, sport):
             return json.dumps({
                 "type": "message",
@@ -76,7 +77,7 @@ def coach():
         if player2:
             return json.dumps({
                 "type": "message",
-                "text": f"new match {content['from']['name']} : {player2}"
+                "text": f"new match @{content['from']['name']} : @{player2}"
             })
         return json.dumps({
             "type": "message",
