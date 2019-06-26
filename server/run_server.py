@@ -40,7 +40,6 @@ def coach():
     content = request.get_json()
     text = ''.join(x for x in content['text'].split(" ")[-1].lower() if x.isalpha())
     sport = ''.join(x for x in content['text'].split(" ")[-2].lower() if x.isalpha())
-    print(content)
     if text != 'help' and sport.lower() not in db.config["T_SPORT"]:
         return json.dumps({
             "type": "message",
@@ -73,15 +72,15 @@ def coach():
             "text": "You left tournament!"
         })
     elif text == 'give':
-        player2 = db.waitlist(content)
+        player2 = db.waitlist(content, sport)
         if player2:
             return json.dumps({
                 "type": "message",
-                "text": f"new match {content['from']['name']}:{player2}"
+                "text": f"new match {content['from']['name']} : {player2}"
             })
         return json.dumps({
             "type": "message",
-            "text": "You left tournament!"
+            "text": "You are added to waitlist!"
         })
     else:
         return json.dumps({

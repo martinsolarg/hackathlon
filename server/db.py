@@ -47,19 +47,25 @@ def tournament(user_data: dict, sport: str):
     return True
 
 
-def waitlist(user_data: dict):
+def waitlist(user_data: dict, sport:str):
     conn = sqlite3.connect(config["database"])
     c = conn.cursor()
-    c.execute(f"select * from waitlist where id = \'{user_data['from']['id']}\'")
-    if len(c.fetchall()) != 0:
-        return False
+    save_user(user_data)
 
-    c.execute(f"select * from waitlist where id = \'{user_data['from']['id']}\'")
-    if len(c.fetchall()) == 0:
-        save_user(user_data)
-    c.execute(
-        f"INSERT INTO waitlist VALUES (\'{user_data['from']['id']}\', \'{user_data['from']['name'].split(' ')[0][:-1]}\' , "
-        f"'{user_data['from']['name'].split(' ')[1]}\', null)")
+    c.execute(f"select * from waitlist where sport = \'{sport}\'")
+    player2 = c.fetchall()
+    if len(player2) == 0:
+        # c.execute(f"select * from waitlist where player_id = \'{user_data['from']['id']}\' and sport = \'{sport}\'")
+        # if len(c.fetchall()) != 0:
+        #     return False
+        c.execute(
+            f"INSERT INTO waitlist VALUES (\'{user_data['from']['id']}\', \'{sport}\' ,null, null)")
+        conn.commit()
+        conn.close()
+        return False
+    else:
+        c.execute(f"select name, surname from player where id = \'{player2[-1][0]}\'")
+        return ", ".join(c.fetchone())
 
 
 def remove_user(user_data: dict, sport: str):
