@@ -45,11 +45,17 @@ def coach():
                     help - print help
                     """
         })
-    elif text == 'enroll':  # TODO check it
+    elif text == 'enroll':
         db.save_user(content)
         return json.dumps({
             "type": "message",
             "text": "You are in tournament!"
+        })
+    elif text == 'leave':
+        db.remove_user(content)
+        return json.dumps({
+            "type": "message",
+            "text": "You left tournament!"
         })
     return json.dumps({
         "type": "message",

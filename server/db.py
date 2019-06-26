@@ -22,6 +22,16 @@ def save_user(user_data: dict):
     c.execute(
         f"INSERT INTO player VALUES (\'{user_data['from']['id']}\', \'{user_data['from']['name'].split(' ')[0][:-1]}\' , "
         f"'{user_data['from']['name'].split(' ')[1]}\', null)")
+
+    conn.commit()
+    conn.close()
+
+
+def remove_user(user_data: dict):
+    conn = sqlite3.connect(config["database"])
+    c = conn.cursor()
+    c.execute(
+        f"DELETE FROM player where id = \'{user_data['from']['id']}\'")
     conn.commit()
     conn.close()
 
