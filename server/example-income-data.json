@@ -1,0 +1,69 @@
+{
+  'type': 'message',
+  'id': '1561555603276',
+  'timestamp': '2019-06-26T13:26:43.273Z',
+  'localTimestamp': '2019-06-26T15:26:43.273+02:00',
+  'serviceUrl': 'https://smba.trafficmanager.net/amer/',
+  'channelId': 'msteams',
+  'from': {
+    'id': '29:1vk_WMZlrVSsJ6R9gXDtu_lqB7of7ahTv65wODJ7S8BbG-l_7khlQLqZ7WqO5Ed51c6UtQJSJdz2qNDYXggcd5A',
+    'name': 'Kuban, Vojtech',
+    'aadObjectId': '9c338d28-be8a-492c-82f0-a5ef4ea0fde2'
+  },
+  'conversation': {
+    'isGroup': True,
+    'id': '19:2a6cc781cb1e4256bfb8d1dbd749122e@thread.skype;messageid=1561555603276',
+    'name': None,
+    'conversationType': 'channel',
+    'tenantId': '83f3a6e1-0470-4e13-984f-16a25372914c'
+  },
+  'recipient': None,
+  'textFormat': 'plain',
+  'attachmentLayout': None,
+  'membersAdded': [],
+  'membersRemoved': [],
+  'topicName': None,
+  'historyDisclosed': None,
+  'locale': 'en-US',
+  'text': '<at>enroll</at> gfdg &nbsp;gsfd gfd&nbsp;\n',
+  'speak': None,
+  'inputHint': None,
+  'summary': None,
+  'suggestedActions': None,
+  'attachments': [
+    {
+      'contentType': 'text/html',
+      'contentUrl': None,
+      'content': '<div><div><span itemscope="" itemtype="http://schema.skype.com/Mention" itemid="0">enroll</span> gfdg &nbsp;gsfd gfd&nbsp;</div>\n</div>',
+      'name': None,
+      'thumbnailUrl': None
+    }
+  ],
+  'entities': [
+    {
+      'type': 'clientInfo',
+      'locale': 'en-US',
+      'country': 'US',
+      'platform': 'Web'
+    }
+  ],
+  'channelData': {
+    'teamsChannelId': '19:2a6cc781cb1e4256bfb8d1dbd749122e@thread.skype',
+    'teamsTeamId': '19:2a6cc781cb1e4256bfb8d1dbd749122e@thread.skype',
+    'channel': {
+      'id': '19:2a6cc781cb1e4256bfb8d1dbd749122e@thread.skype'
+    },
+    'team': {
+      'id': '19:2a6cc781cb1e4256bfb8d1dbd749122e@thread.skype'
+    },
+    'tenant': {
+      'id': '83f3a6e1-0470-4e13-984f-16a25372914c'
+    }
+  },
+  'action': None,
+  'replyToId': None,
+  'value': None,
+  'name': None,
+  'relatesTo': None,
+  'code': None
+}
