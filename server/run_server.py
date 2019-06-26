@@ -28,15 +28,26 @@ def get_users():
 
 @app.route('/coach', methods=['POST'])
 def coach():
-    content = json.loads(request.get_json())
-    text = content['text'].split(" ")[-1].lower()
+    # return json.dumps({
+    #     "type": "message",
+    #     "text": "This is a reply!"
+    # })
+    content = request.get_json()
+    text = ''.join(x for x in content['text'].split(" ")[-1].lower() if x.isalpha())
+    print(content)
     if text == 'help':
-        return """
-            enroll - enroll tournament 
-            leave - leave tournament
-            give - wait for a quick game
-            help - print help
-            """
-
-    else: #TODO check it
+        return json.dumps({
+            "type": "message",
+            "text": """
+                    enroll - enroll tournament
+                    leave - leave tournament
+                    give - wait for a quick game
+                    help - print help
+                    """
+        })
+    elif text == 'enroll':  # TODO check it
         pass
+    return json.dumps({
+        "type": "message",
+        "text": "This is a reply!"
+    })
