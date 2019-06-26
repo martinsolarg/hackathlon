@@ -19,7 +19,9 @@ def init_db():
 def save_user(user_data: dict):
     conn = sqlite3.connect(config["database"])
     c = conn.cursor()
-    c.execute(f"INSERT INTO users VALUES ({user_data['id']}, \'{user_data['name']}\')")
+    c.execute(
+        f"INSERT INTO player VALUES (\'{user_data['from']['id']}\', \'{user_data['from']['name'].split(' ')[0][:-1]}\' , "
+        f"'{user_data['from']['name'].split(' ')[1]}\', null)")
     conn.commit()
     conn.close()
 
@@ -27,7 +29,7 @@ def save_user(user_data: dict):
 def get_users():
     conn = sqlite3.connect(config["database"])
     c = conn.cursor()
-    c.execute(f"SELECT * FROM users")
+    c.execute(f"SELECT * FROM player")
     users = c.fetchall()
     conn.close()
     return users

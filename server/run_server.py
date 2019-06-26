@@ -46,7 +46,11 @@ def coach():
                     """
         })
     elif text == 'enroll':  # TODO check it
-        pass
+        db.save_user(content)
+        return json.dumps({
+            "type": "message",
+            "text": "You are in tournament!"
+        })
     return json.dumps({
         "type": "message",
         "text": "This is a reply!"
