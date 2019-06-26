@@ -25,9 +25,9 @@ Call bot
 
  ````
 curl -X GET  http://127.0.0.1:5000/coach <text>
+using bot coach (outgoing webhook)
 enroll - enroll tournament 
 leave - leave tournament
 give - wait for a quick game
 help - print help
 ````
-
