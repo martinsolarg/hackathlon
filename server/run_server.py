@@ -48,6 +48,7 @@ def coach():
                     <SPORT> enroll - enroll tournament
                     <SPORT> leave - leave tournament
                     <SPORT> give - wait for a quick game
+                    <SPORT> round - returns tournament players
                     help - print help
                     """
         })
