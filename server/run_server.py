@@ -91,10 +91,9 @@ def coach():
             "text": "You are added to waitlist!"
         })
     elif text == 'round':
-        pairs = db.get_tournament(content, sport)
         return json.dumps({
             "type": "message",
-            "text": "You are added to waitlist!"
+            "text": f"Tournament matches: {list(f'@{a[0]} : @{a[1]}' for a in db.get_tournament(sport))}!"
         })
     else:
         return json.dumps({

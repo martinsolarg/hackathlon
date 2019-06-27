@@ -2,7 +2,7 @@ import sqlite3
 import os
 from contextlib import suppress
 from config import config
-
+from tournament import simple_product
 
 def init_db():
     with suppress(FileNotFoundError):
@@ -95,3 +95,16 @@ def get_users_tournament(sport):
     users = c.fetchall()
     conn.close()
     return users
+
+
+def get_tournament(sport):
+    ids = get_users_tournament(sport)
+    conn = sqlite3.connect(config["database"])
+    c = conn.cursor()
+    c.execute(f"SELECT * FROM player")
+    print(c.fetchall())
+    users = []
+    for id in ids:
+        c.execute(f"SELECT name, surname FROM player where id = '{id[0]}'")
+        users.append(", ".join(c.fetchone()))
+    return simple_product(users)
