@@ -38,6 +38,7 @@ def coach():
     #     "text": "This is a reply!"
     # })
     content = request.get_json()
+    print(content)
     text = ''.join(x for x in content['text'].split()[-1].lower() if x.isalpha())
     if text == 'help':
         return json.dumps({
@@ -74,6 +75,11 @@ def coach():
         })
     elif text == 'give':
         player2 = db.waitlist(content, sport)
+        if player2 == 5:
+            return json.dumps({
+                "type": "message",
+                "text": f"Hey, you are already in waitlist!"
+            })
         if player2:
             return json.dumps({
                 "type": "message",
