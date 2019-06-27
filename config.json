@@ -6,7 +6,7 @@
   "player_columns": ["id", "name", "surname", "nickname"],
   "match_columns": ["hash", "tournament_id", "winner", "player_ids"],
   "waitlist_columns": ["player_id", "sport", "start_time", "end_time"],
-  "T_SPORT": ["pingpong","football"]
+  "T_SPORT": [".pingpong",".football"]
 
 
 }

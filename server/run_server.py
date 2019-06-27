@@ -40,6 +40,7 @@ def coach():
     content = request.get_json()
     print(content)
     text = ''.join(x for x in content['text'].split()[-1].lower() if x.isalpha())
+
     if text == 'help':
         return json.dumps({
             "type": "message",
@@ -50,7 +51,7 @@ def coach():
                     help - print help
                     """
         })
-    sport = ''.join(x for x in content['text'].split()[-2].lower() if x.isalpha())
+    sport = content['text'].split()[-2][content['text'].split()[-2].rfind("."):]
     if text != 'help' and sport.lower() not in db.config["T_SPORT"]:
         return json.dumps({
             "type": "message",
@@ -85,6 +86,12 @@ def coach():
                 "type": "message",
                 "text": f"new match @{content['from']['name']} : @{player2}"
             })
+        return json.dumps({
+            "type": "message",
+            "text": "You are added to waitlist!"
+        })
+    elif text == 'round':
+        pairs = db.get_tournament(content, sport)
         return json.dumps({
             "type": "message",
             "text": "You are added to waitlist!"
